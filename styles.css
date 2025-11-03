@@ -10,6 +10,9 @@
   --muted: #6b6b6b;
   --card-bg: #ffffff;
   --glass: rgba(255,255,255,0.6);
+  --bg-color: #0a0f1f;
+  --text-color: #ffffff;
+  --primary-gradient: linear-gradient(90deg, #5f9bff, #a279ff);
 
   /* typography */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
@@ -44,7 +47,8 @@ body{
   top:0;
   z-index:40;
   backdrop-filter: blur(6px);
-  background: linear-gradient(90deg, rgba(255,255,255,0.7), rgba(255,255,255,0.55));
+  background-image: url(assets/fundo.png);
+  /* background: linear-gradient(90deg, rgba(255,255,255,0.7), rgba(255,255,255,0.55)); */
   border-bottom:1px solid rgba(0,0,0,0.04);
 }
 .header-inner{
@@ -86,10 +90,65 @@ body{
 /* Hero */
 .hero{
   padding:48px 0;
-  background: linear-gradient(135deg,var(--grad-start),var(--grad-end));
-  color:#fff;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  text-align: center;
+  color: var(--text-color);
+  background: var(--bg-color);
+  overflow: hidden;
 }
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/Logo_EVOLVERE.png"); 
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100%; /* ajuste o tamanho */
+  opacity: 0.10; /* deixa sutil */
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  background: var(--primary-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero .btn {
+  background: var(--primary-gradient);
+  color: #fff;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.hero .btn:hover {
+  transform: scale(1.05);
+}
+
 .hero-grid{
   display:grid;
   grid-template-columns: 1fr 520px;
@@ -236,6 +295,27 @@ copyright{color:var(--muted)}
   .cta-box{ flex-direction:column; align-items:flex-start }
 }
 
+/* Ajuste responsivo para telas menores */
+@media (max-width: 768px) {
+  .images-container {
+    flex-direction: column; /* imagens empilham */
+    gap: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero::before {
+    background-size: 90%; /* aumenta um pouco no mobile */
+    opacity: 0.12;
+  }
+
+  .images-container img {
+    max-width: 100%; /* ocupa toda a largura do container */
+  }
+}
+
+
 @media (max-width:600px){
   .container{width:calc(100% - 32px)}
   .services-grid{ grid-template-columns:1fr; }
@@ -243,7 +323,7 @@ copyright{color:var(--muted)}
   .main-nav{ display:none; }
   .nav-toggle{ display:block; }
   .main-nav.open{ display:flex; position:absolute; right:20px; top:70px; background:#ffffffbd; padding:12px; border-radius:10px; box-shadow:0 10px 30px rgba(15,15,40,0.06); flex-direction:column;}
-  .site-header{background:rgba(255, 255, 255, 0.63)}
+  /* .site-header{background:rgba(255, 255, 255, 0.63)} */
 }
 
 
@@ -270,16 +350,4 @@ copyright{color:var(--muted)}
 /* Efeito ao passar o mouse (desktop) */
 .images-container img:hover {
   transform: scale(1.03);
-}
-
-/* Ajuste responsivo para telas menores */
-@media (max-width: 768px) {
-  .images-container {
-    flex-direction: column; /* imagens empilham */
-    gap: 1.5rem;
-  }
-
-  .images-container img {
-    max-width: 100%; /* ocupa toda a largura do container */
-  }
 }
