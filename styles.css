@@ -304,6 +304,11 @@ copyright{color:var(--muted)}
     gap: 1.5rem;
   }
 
+  .btn {
+    margin-bottom: 15px;
+  
+  }
+
   .hero h1 {
     font-size: 2rem;
   }
